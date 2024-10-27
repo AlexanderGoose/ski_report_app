@@ -13,12 +13,18 @@ openmeteo = openmeteo_requests.Client(session = retry_session)
 
 url = "https://api.open-meteo.com/v1/forecast"
 
+# API returns temps as C, need to ALWAYS convert to F
 def cel_to_far(cel_temp):
     farenheit = cel_temp * (9/5)
     farenheit = farenheit + 32
     return farenheit
 
 def get_weather_():
+    """
+    TODO: remove hard coded coordinatees and re-add loop to go through list of resorts
+    makes the api call
+
+    """
 
     # initializing dictionary to hold weather data
     weather_data = {}
@@ -45,26 +51,26 @@ def get_weather_():
     responses = openmeteo.weather_api(url, params=params)
 
     response = responses[0]
-    # print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-    # print(f"Elevation {response.Elevation()} m asl")
-    # print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
-    # print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
 
     # Process hourly data. The order of variables needs to be the same as requested.
+    # TODO: add in snow when winter comes
     hourly = response.Hourly()
-    hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()
-    hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()
-    hourly_rain = hourly.Variables(2).ValuesAsNumpy()
-    hourly_visibility = hourly.Variables(3).ValuesAsNumpy()
-    hourly_wind_speed_10m = hourly.Variables(4).ValuesAsNumpy()
-    hourly_wind_gusts_10m = hourly.Variables(5).ValuesAsNumpy()
+    hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()         # temperature
+    hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()   # feels like?
+    hourly_rain = hourly.Variables(2).ValuesAsNumpy()                   # rain 
+    hourly_visibility = hourly.Variables(3).ValuesAsNumpy()             # visibility
+    hourly_wind_speed_10m = hourly.Variables(4).ValuesAsNumpy()         # wind speed
+    hourly_wind_gusts_10m = hourly.Variables(5).ValuesAsNumpy()         # wind gust
 
+    # creates dictionary, first adds data using datetime as only column
     hourly_data = {"date": pd.date_range(
         start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
         end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
         freq = pd.Timedelta(seconds = hourly.Interval()),
         inclusive = "left"
     )}
+
+    # adds to dictionary created above
     hourly_data["temperature_2m"] = hourly_temperature_2m
     hourly_data["apparent_temperature"] = hourly_apparent_temperature
     hourly_data["rain"] = hourly_rain
@@ -72,20 +78,20 @@ def get_weather_():
     hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
     hourly_data["wind_gusts_10m"] = hourly_wind_gusts_10m
 
+    # convert above dicrionary to df -- is this good idea??
     hourly_dataframe = pd.DataFrame(data = hourly_data)
-    # print(hourly_dataframe)
     return hourly_dataframe
 
+# create a df by calling above function
 hr_df = get_weather_()
 
-# get data for today: high and low temps, vis, wind speed, and gusts
 
+# TODO: rename class to something more generic and refactor where its called
 class todays_weather():
     """
-    gets various weather data from a dataframe.
+    gets various weather data from a dataframe.\n
     RETURNS dictionaries of values
     """
-    
     def __init__(self, df):
         self.df = df
 
@@ -107,19 +113,23 @@ class todays_weather():
     
     def rain(self):
         rain_data = {
-            'total_rain': sum(self.df['rain'])
+            'total_rain': round(sum(self.df['rain']),2)
         }
         return rain_data
     
     def wind(self):
         wind_data = {
-            'avg_wind': float(self.df['wind_speed_10m'].mean()),
-            'max_gusts': max(self.df['wind_gusts_10m']),
-            'avg_gusts': float(self.df['wind_gusts_10m'].mean())
+            'avg_wind': round(float(self.df['wind_speed_10m'].mean()),2),
+            'max_gusts': round(max(self.df['wind_gusts_10m']),2),
+            'avg_gusts': round(float(self.df['wind_gusts_10m'].mean()),)
         }
         return wind_data
 
 
+"""
+these 3 functions create dfs of specific time ranges\n
+RETURNS dfs
+"""
 def todays_range(df):
     # Get today's date in the format 'YYYY-MM-DD'
     today_date = datetime.now().strftime('%Y-%m-%d')
@@ -140,11 +150,18 @@ def seven_day_range(df):
     return seven_day_data
 
 
+# create 3 new dfs by calling above functions
 today = todays_range(hr_df)
 three_day = three_day_range(hr_df)
 seven_day = seven_day_range(hr_df)
 
+
 def weather_dict_maker(df):
+    """
+    using a df, this creates a dictionary of various weather information\n
+    uses todays_weather to generate nested dictionaris\n
+    RETURNS dictionary
+    """
     weather_dict = {}
 
     range_data = todays_weather(df)
@@ -156,7 +173,13 @@ def weather_dict_maker(df):
     weather_dict['wind'] = range_data.wind()
     return weather_dict
 
+
 def weather_json_maker(today_df, three_day_df, seven_day_df):
+    """
+    creates weather_data which contains 1, 3, and 7 day data as dictionaries\n
+    combines 3 dictionaries into one and converts it to a JSON\n
+    RETURNS JSON
+    """
     today_dict = weather_dict_maker(today_df)
     three_day_dict = weather_dict_maker(three_day_df)
     seven_day_dict = weather_dict_maker(seven_day_df)
@@ -170,6 +193,7 @@ def weather_json_maker(today_df, three_day_df, seven_day_df):
     formatted_data = json.dumps(weather_data, indent=4)
     return formatted_data
 
+# used for testing above function
 print(weather_json_maker(today, three_day, seven_day))
 
 
