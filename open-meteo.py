@@ -3,7 +3,7 @@ import requests_cache
 import pandas as pd 
 from retry_requests import retry
 from ikon import resorts, resorts_lst
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 
 # Setup the Open-Meteo API client with cache and retry on error
@@ -44,14 +44,11 @@ def get_weather_():
 
     responses = openmeteo.weather_api(url, params=params)
 
-    # create JSON template for weather_data dictionary using nested dicts
-    # weather_data[resort_name] = {'today': {}, 'prev_weather': {}, }
-
     response = responses[0]
-    print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
-    print(f"Elevation {response.Elevation()} m asl")
-    print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
-    print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
+    # print(f"Coordinates {response.Latitude()}°N {response.Longitude()}°E")
+    # print(f"Elevation {response.Elevation()} m asl")
+    # print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
+    # print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
 
     # Process hourly data. The order of variables needs to be the same as requested.
     hourly = response.Hourly()
@@ -84,6 +81,10 @@ hr_df = get_weather_()
 # get data for today: high and low temps, vis, wind speed, and gusts
 
 class todays_weather():
+    """
+    gets various weather data from a dataframe.
+    RETURNS dictionaries of values
+    """
     
     def __init__(self, df):
         self.df = df
@@ -102,14 +103,12 @@ class todays_weather():
             'max_vis': round(max(self.df['visibility']),2),
             'avg_vis': round(float(self.df['visibility'].mean()),)
         }
-        print(vis_data)
         return vis_data
     
     def rain(self):
         rain_data = {
             'total_rain': sum(self.df['rain'])
         }
-        print(rain_data)
         return rain_data
     
     def wind(self):
@@ -118,10 +117,7 @@ class todays_weather():
             'max_gusts': max(self.df['wind_gusts_10m']),
             'avg_gusts': float(self.df['wind_gusts_10m'].mean())
         }
-        print(wind_data)
         return wind_data
-
-# example = todays_weather(hr_df)
 
 
 def todays_range(df):
@@ -133,25 +129,49 @@ def todays_range(df):
     
     return today_data
 
+def three_day_range(df):
+    last_3_days = [(datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(3)]
+    three_day_data = df[df['date'].dt.strftime('%Y-%m-%d').isin(last_3_days)]
+    return three_day_data
 
-def weather_range_json(df):
-    weather_data = {}
+def seven_day_range(df):
+    last_7_days = [(datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7)]
+    seven_day_data = df[df['date'].dt.strftime('%Y-%m-%d').isin(last_7_days)] 
+    return seven_day_data
+
+
+today = todays_range(hr_df)
+three_day = three_day_range(hr_df)
+seven_day = seven_day_range(hr_df)
+
+def weather_dict_maker(df):
+    weather_dict = {}
+
     range_data = todays_weather(df)
 
-    weather_data['temps'] = range_data.get_todays_temp()
-    weather_data['vis'] = range_data.visibility()
-    weather_data['rain'] = range_data.rain()
-    weather_data['wind'] = range_data.wind()
+
+    weather_dict['temps'] = range_data.get_todays_temp()
+    weather_dict['vis'] = range_data.visibility()
+    weather_dict['rain'] = range_data.rain()
+    weather_dict['wind'] = range_data.wind()
+    return weather_dict
+
+def weather_json_maker(today_df, three_day_df, seven_day_df):
+    today_dict = weather_dict_maker(today_df)
+    three_day_dict = weather_dict_maker(three_day_df)
+    seven_day_dict = weather_dict_maker(seven_day_df)
+
+    weather_data = {
+        'today': today_dict,
+        'three_day': three_day_dict,
+        'seven_day': seven_day_dict
+    }
 
     formatted_data = json.dumps(weather_data, indent=4)
     return formatted_data
 
-print(weather_range_json(hr_df))
+print(weather_json_maker(today, three_day, seven_day))
 
-def three_day_range():
-    pass
-def seven_day_range():
-    pass
 
 
 
