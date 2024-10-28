@@ -19,6 +19,9 @@ def cel_to_far(cel_temp):
     farenheit = farenheit + 32
     return farenheit
 
+# TODO: remove unecessary data pulls such as temperature, wind, vis for last week,
+# we want to only have 7 and 3 day data for snowfall, all others should be daily weather variables
+
 def get_weather_():
     """
     makes the api call, adds all info to dictionary, then converts to dataframe
@@ -31,107 +34,126 @@ def get_weather_():
     for resort_name in resorts_lst:
         resort_info = resorts.get(resort_name)
 
-        # ensure it's in the list
-        if resort_info:
-            # first, grab coordinates
-            curr_lon = str(resort_info['LON'])
-            curr_lat = str(resort_info['LAT'])
 
-        
-            params = {
-                'latitude': curr_lat,
-                'longitude': curr_lon,
-                # "latitude": 39.4817,
-                # "longitude": -106.0383,
-                "hourly": ["temperature_2m", "apparent_temperature", "rain", "visibility", "wind_speed_10m", "wind_gusts_10m"],
-                "past_days": 7,
-                "forecast_days": 1
-            }
+        # first, grab coordinates
+        curr_lon = str(resort_info['LON'])
+        curr_lat = str(resort_info['LAT'])
 
-            # print(f'CURR RES: {resort_name}')
-            responses = openmeteo.weather_api(url, params=params)
+    
+        params = {
+            'latitude': curr_lat,
+            'longitude': curr_lon,
+            # "latitude": 39.4817,
+            # "longitude": -106.0383,
+            "hourly": ["temperature_2m", "apparent_temperature", "rain", "visibility", "wind_speed_10m", "wind_gusts_10m", "cloud_cover"],
+            "current": "cloud_cover",
+            "past_days": 7,
+            "forecast_days": 1
+        }
 
-            response = responses[0]
+        # print(f'CURR RES: {resort_name}')
+        responses = openmeteo.weather_api(url, params=params)
 
-            # Process hourly data. The order of variables needs to be the same as requested.
-            # TODO: add in snow when winter comes
-            hourly = response.Hourly()
-            hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()         # temperature
-            hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()   # feels like?
-            hourly_rain = hourly.Variables(2).ValuesAsNumpy()                   # rain 
-            hourly_visibility = hourly.Variables(3).ValuesAsNumpy()             # visibility
-            hourly_wind_speed_10m = hourly.Variables(4).ValuesAsNumpy()         # wind speed
-            hourly_wind_gusts_10m = hourly.Variables(5).ValuesAsNumpy()         # wind gust
+        response = responses[0]
 
-            # creates dictionary, first adds data using datetime as only column
-            hourly_data = {"date": pd.date_range(
-                start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
-                end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
-                freq = pd.Timedelta(seconds = hourly.Interval()),
-                inclusive = "left"
-            )}
+        # Process hourly data. The order of variables needs to be the same as requested.
+        # TODO: add in snow when winter comes
+        hourly = response.Hourly()
+        hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()         # temperature
+        hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()   # feels like?
+        hourly_rain = hourly.Variables(2).ValuesAsNumpy()                   # rain 
+        hourly_visibility = hourly.Variables(3).ValuesAsNumpy()             # visibility
+        hourly_wind_speed_10m = hourly.Variables(4).ValuesAsNumpy()         # wind speed
+        hourly_wind_gusts_10m = hourly.Variables(5).ValuesAsNumpy()         # wind gust
+        # TODO: Find out why cloud cover returns such strange values
+        #hourly_cloud_cover = hourly.Variables(2).ValuesAsNumpy()   
+        #print(hourly_cloud_cover)   
 
-            # adds to dictionary created above
-            hourly_data["temperature_2m"] = hourly_temperature_2m
-            hourly_data["apparent_temperature"] = hourly_apparent_temperature
-            hourly_data["rain"] = hourly_rain
-            hourly_data["visibility"] = hourly_visibility
-            hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
-            hourly_data["wind_gusts_10m"] = hourly_wind_gusts_10m
+        # creates dictionary, first adds data using datetime as only column
+        # this dictionary is for only ONE resort, the current one in the loop
+        hourly_data = {"date": pd.date_range(
+            start = pd.to_datetime(hourly.Time(), unit = "s", utc = True),
+            end = pd.to_datetime(hourly.TimeEnd(), unit = "s", utc = True),
+            freq = pd.Timedelta(seconds = hourly.Interval()),
+            inclusive = "left"
+        )}
 
-            # Convert dictionary to DataFrame
-            hourly_data = pd.DataFrame(data=hourly_data)
-            hourly_data['resort'] = resort_name  # Add resort name as a column for reference
+        # adds to dictionary created above
+        hourly_data["temperature_2m"] = hourly_temperature_2m
+        hourly_data["apparent_temperature"] = hourly_apparent_temperature
+        hourly_data["rain"] = hourly_rain
+        hourly_data["visibility"] = hourly_visibility
+        hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
+        hourly_data["wind_gusts_10m"] = hourly_wind_gusts_10m
 
-            # Append to the list of all resorts' data
-            all_resorts_data.append(hourly_data)
+        # Convert dictionary to DataFrame (important for concatination later)
+        hourly_data = pd.DataFrame(data=hourly_data)
+        hourly_data['resort'] = resort_name  # Add resort name as a column for reference!!
 
-    # hourly_dataframe = pd.DataFrame(data = hourly_data)
+        # Append to the list of all resorts' data
+        all_resorts_data.append(hourly_data)
+
     # Combine all resort data into a single DataFrame
     combined_df = pd.concat(all_resorts_data, ignore_index=True)
     return combined_df
 
 # create a df by calling above function
 hr_df = get_weather_()
-print(hr_df)
+# print(hr_df)
+
 
 # TODO: rename class to something more generic and refactor where its called
 class todays_weather():
     """
     gets various weather data from a dataframe.\n
+    temperature, vis, and wind only include data during operational hours to avoid night data skewing metrics.\n
+    snow/rain data included for all 24 hours of day.\n
     RETURNS dictionaries of values
     """
     def __init__(self, df):
         self.df = df
 
     def get_todays_temp(self):
+        # Filter for hours between 8 AM and 4 PM
+        daytime_df = self.df[(self.df['date'].dt.hour >= 8) & (self.df['date'].dt.hour <= 16)]
+        
+        # Calculate min, max, and avg temperature for filtered hours
         todays_temp_data = {
-            'min_temp': round(cel_to_far(min(self.df['temperature_2m'])),2),
-            'max_temp': round(cel_to_far(max(self.df['temperature_2m'])),2),
-            'avg_temp': round(float(cel_to_far(self.df['temperature_2m'].mean())),2)
+            'min_temp': round(float(cel_to_far(daytime_df['temperature_2m'].min())), 2),
+            'max_temp': round(float(cel_to_far(daytime_df['temperature_2m'].max())), 2),
+            'avg_temp': round(float(cel_to_far(daytime_df['temperature_2m'].mean())), 2)
         }
+        # print(todays_temp_data)
         return todays_temp_data
 
     def visibility(self):
+        # Filter the data for times between 8 AM and 4 PM
+        filtered_df = self.df[(self.df['date'].dt.hour >= 8) & (self.df['date'].dt.hour <= 16)]
+        
+        # Calculate min, max, and avg visibility for the filtered hours
         vis_data = {
-            'min_vis': round(min(self.df['visibility']),2),
-            'max_vis': round(max(self.df['visibility']),2),
-            'avg_vis': round(float(self.df['visibility'].mean()),)
+            'min_vis': float(filtered_df['visibility'].min()),
+            'max_vis': float(filtered_df['visibility'].max()),
+            'avg_vis': round(float(filtered_df['visibility'].mean()),2)
         }
+        # print(vis_data)
         return vis_data
     
     def rain(self):
         rain_data = {
             'total_rain': round(sum(self.df['rain']),2)
         }
+        # print(rain_data)
         return rain_data
     
     def wind(self):
+        filtered_df = self.df[(self.df['date'].dt.hour >= 8) & (self.df['date'].dt.hour <= 16)]
         wind_data = {
-            'avg_wind': round(float(self.df['wind_speed_10m'].mean()),2),
-            'max_gusts': round(max(self.df['wind_gusts_10m']),2),
-            'avg_gusts': round(float(self.df['wind_gusts_10m'].mean()),)
+            'avg_wind': round(float(filtered_df['wind_speed_10m'].mean()),2),
+            'max_gusts': round(max(filtered_df['wind_gusts_10m']),2),
+            'avg_gusts': round(float(filtered_df['wind_gusts_10m'].mean()),)
         }
+        # print(wind_data)
         return wind_data
 
 
@@ -187,7 +209,8 @@ def weather_json_maker(today_df, three_day_df, seven_day_df):
     """
     creates weather_data which contains 1, 3, and 7 day data as dictionaries\n
     combines 3 dictionaries into one and converts it to a JSON\n
-    RETURNS JSON
+    TODO: rename function as it no longer returns a JSON (this was an issue for the below loop, needed them to be dicts)
+    RETURNS dictionary
     """
     today_dict = weather_dict_maker(today_df)
     three_day_dict = weather_dict_maker(three_day_df)
@@ -198,13 +221,8 @@ def weather_json_maker(today_df, three_day_df, seven_day_df):
         'three_day': three_day_dict,
         'seven_day': seven_day_dict
     }
-
-    # formatted_data = json.dumps(weather_data, indent=4)
-    # return formatted_data
     return weather_data
 
-# used for testing above function
-# print(weather_json_maker(today, three_day, seven_day))
 
 all_resort_data_dict = {}
 for resort_name in resorts_lst:
@@ -217,17 +235,6 @@ for resort_name in resorts_lst:
     curr_weather_data = weather_json_maker(curr_today, curr_three_day, curr_seven_day)
     all_resort_data_dict[resort_name] = curr_weather_data
 
-# all_resort_data = json.dumps(all_resort_data_dict, indent = 4)
+# write all data to a JSON file. We will pull data from the JSON later.
 with open("all_resort_weather_data.json", "w") as file:
     json.dump(all_resort_data_dict, file, indent = 4)
-
-
-
-# divy up the days into their own thing
-
-# for each time frame (7 day, 3 day, today)
-# find total snow (rain)
-"""
-I need to make the other functions simply work through a loop. Still want to split by time frames
-and return the same information in the todays_weather() class, but like: 'resort': {todays_weather}
-"""
