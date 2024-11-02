@@ -60,13 +60,34 @@ def analysis():
         time.sleep(2)
         analysis()
 
-    def check_weather(resort):
-        todays_weather = weather[resort]["today"]
-        three_day_weather = weather[resort]["three_day"]
-        seven_day_weather = weather[resort]["seven_day"]
-
+    def check_weather(resort1, resort2):
+        # area to store explenations of weather
+        return_statements = []
         # TODO: calculate snow
         # ex: if res_1["snow..."] -> print("{res 1} has more snow with {amount} in the past {timeframe}")
+        snow_1_today = weather[resort1]["today"]["snow"]["snow_total"]
+        snow_1_3     = weather[resort1]["three_day"]["snow"]["snow_total"]
+        snow_1_7     = weather[resort1]["seven_day"]["snow"]["snow_total"]
+
+        snow_2_today = weather[resort2]["today"]["snow"]["snow_total"]
+        snow_2_3     = weather[resort2]["three_day"]["snow"]["snow_total"]
+        snow_2_7     = weather[resort2]["seven_day"]["snow"]["snow_total"]
+
+        if snow_1_today > snow_2_today:
+            return_statements.append(f"{resort1} has more snow today.")
+        else:
+            return_statements.append(f"{resort2} has more snow today.")
+
+        if snow_1_3 > snow_2_3:
+            return_statements.append(f"{resort1} has had more snow in the last 3 days.")
+        else:
+            return_statements.append(f"{resort2} has had more snow in the last 3 days.")
+
+        if snow_1_7 > snow_2_7:
+            return_statements.append(f"{resort1} has had more snow in the last 7 days.")
+        else:
+            return_statements.append(f"{resort1} has had more snow in the last 7 days.")
+
 
         # TODO: compare winds and gusts
 
