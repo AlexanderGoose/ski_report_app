@@ -134,17 +134,40 @@ def count_score(weather_dict):
     # sorts by the score from highest to lowest
     sorted_resort_scores = dict(sorted(resort_scores.items(), key=lambda item: item[1], reverse=True))
     # join items into a single string with newlines in between resorts
-    formatted_output = "\n".join(f"{resort}: {value}" for resort, value in sorted_resort_scores.items())
 
-    return formatted_output
+    # return formatted_output
+    return sorted_resort_scores
 
 
 # testing
 # 1 - read in json file w/ full path
 # 2 - call and print above function
 weather_data = read_json_file('/Users/goose/Desktop/ski_report_app/current_api/all_resort_weather_data.json')
-print(count_score(weather_data))
+# print(count_score(weather_data))
+
+scores = count_score(weather_data)
+formatted_output = "\n".join(f"{resort}: {value}" for resort, value in scores.items())
+print("Initial Scores:\n")
+print(formatted_output)
+print('\n')
 
 # TODO: begin normalizing the data
+max_score = max(scores.values())
+min_score = min(scores.values())
+
+normalized_scores = {}
+for resort, value in scores.items():
+    norm_score = (value - min_score) / (max_score - min_score)
+    normalized_scores[resort] = round(norm_score, 2)
+
+formatted__normal_output = "\n".join(f"{resort}: {value}" for resort, value in normalized_scores.items())
+print('Normalized Scores:\n')
+print(formatted__normal_output)
+
+# save normalized data as JSON
+with open("normalized_resort_scores.json", "w") as file:
+    json.dump(normalized_scores, file, indent=4)
+
+
 
 

@@ -1,6 +1,8 @@
-resorts_lst = ['Arapahoe Basin', 'Aspen Highlands', 'Aspen Mountain',
-               'Buttermilk (Aspen)', 'Copper Mountain', 'Eldora',
-               'Snowmass (Aspen)', 'Steamboat', 'Winter Park']
+# resorts_lst = ['Arapahoe Basin', 'Aspen Highlands', 'Aspen Mountain',
+#                'Buttermilk (Aspen)', 'Copper Mountain', 'Eldora',
+#                'Snowmass (Aspen)', 'Steamboat', 'Winter Park']
+
+resorts_lst = ['Arapahoe Basin', 'Copper Mountain', 'Eldora', 'Steamboat', 'Winter Park']
 
 resorts = {
 
