@@ -1,6 +1,7 @@
 """
 
 Here we decide what is good or bad weather
+This needs a lot of work. It is currrently very subjective.
 
 ------------------------------------ snow
 Snowfall:
@@ -64,73 +65,86 @@ def count_score(weather_dict):
     for key, values in weather_dict.items():
         curr_res_score = 0
 
-        # 7 day snow
-        if weather_dict[key]["seven_day"]["rain"]["total_rain"] > 12:
-            curr_res_score += 5
-        elif 12 >= weather_dict[key]["seven_day"]["rain"]["total_rain"] > 6:
-            curr_res_score += 3
-        elif 6 >= weather_dict[key]["seven_day"]["rain"]["total_rain"] > 0:
-            curr_res_score += 1
+        # Today's snow -- this may be using the wrong input? As in from midnight to now, instead of today's total predicted amount
+        # cosider adding back in the commented out line in open-meteo.py that uses daily data
+        if weather_dict[key]["today"]["snow"]["total_snow"] > 8:
+            curr_res_score += 6  # High score for significant snowfall today
+        elif 8 >= weather_dict[key]["today"]["snow"]["total_snow"] > 4:
+            curr_res_score += 4  # Moderate snowfall
+        elif 4 >= weather_dict[key]["today"]["snow"]["total_snow"] > 0:
+            curr_res_score += 2  # Light snowfall
 
-        # 3 day snow
-        if weather_dict[key]["three_day"]["rain"]["total_rain"] > 12:
-            curr_res_score += 5
-        elif 12 >= weather_dict[key]["three_day"]["rain"]["total_rain"] > 6:
-            curr_res_score += 3
-        elif 6 >= weather_dict[key]["three_day"]["rain"]["total_rain"] > 0:
-            curr_res_score += 1
+        # 7 day snow - adjusted to use smoother ranges
+        if weather_dict[key]["seven_day"]["snow"]["total_snow"] > 15:
+            curr_res_score += 6
+        elif 15 >= weather_dict[key]["seven_day"]["snow"]["total_snow"] > 8:
+            curr_res_score += 4
+        elif 8 >= weather_dict[key]["seven_day"]["snow"]["total_snow"] > 3:
+            curr_res_score += 2
 
-        # temps
-        if 40 >= weather_dict[key]["today"]["temps"]["avg_temp"] >= 20 and weather_dict[key]["today"]["temps"]["max_temp"] <= 40:
+        # 3 day snow - slightly higher weight for more recent snow
+        if weather_dict[key]["three_day"]["snow"]["total_snow"] > 15:
+            curr_res_score += 7
+        elif 15 >= weather_dict[key]["three_day"]["snow"]["total_snow"] > 8:
             curr_res_score += 5
-        elif 30 >= weather_dict[key]["today"]["temps"]["avg_temp"] >= 10:
+        elif 8 >= weather_dict[key]["three_day"]["snow"]["total_snow"] > 3:
             curr_res_score += 3
-        elif weather_dict[key]["today"]["temps"]["max_temp"] >= 50: # too hot
-            curr_res_score -= 1
-        elif weather_dict[key]["today"]["temps"]["avg_temp"] >= 10: # too cold
-            curr_res_score -= 1
 
-        # wind
+        # Temperature
+        if 35 >= weather_dict[key]["today"]["temps"]["avg_temp"] >= 20 and weather_dict[key]["today"]["temps"]["max_temp"] <= 40:
+            curr_res_score += 6
+        elif 30 >= weather_dict[key]["today"]["temps"]["avg_temp"] >= 15:
+            curr_res_score += 4
+        elif weather_dict[key]["today"]["temps"]["max_temp"] >= 45:  # too hot
+            curr_res_score -= 2
+        elif weather_dict[key]["today"]["temps"]["avg_temp"] <= 5:  # too cold
+            curr_res_score -= 2
+
+        # Wind 
         if weather_dict[key]["today"]["wind"]["avg_wind"] < 5:
             curr_res_score += 5
-        elif 15 >= weather_dict[key]["today"]["wind"]["avg_wind"] >= 5:
+        elif 10 >= weather_dict[key]["today"]["wind"]["avg_wind"] >= 5:
             curr_res_score += 3
-        elif weather_dict[key]["today"]["wind"]["avg_wind"] >= 20:
-            curr_res_score -= 1
-
-        # gusts
-        if weather_dict[key]["today"]["wind"]["max_gusts"] <= 15:
-            curr_res_score += 2
-        elif weather_dict[key]["today"]["wind"]["max_gusts"] >= 20:
-            curr_res_score -= 1
-        elif 15 >= weather_dict[key]["today"]["wind"]["avg_gusts"] >= 0:
-            curr_res_score += 2
-        elif weather_dict[key]["today"]["wind"]["avg_gusts"] >= 25: # too windy
+        elif 20 >= weather_dict[key]["today"]["wind"]["avg_wind"] > 10:
+            curr_res_score += 1
+        elif weather_dict[key]["today"]["wind"]["avg_wind"] > 20:
             curr_res_score -= 3
 
-        # vis
-        if weather_dict[key]["today"]["vis"]["avg_vis"] >= 8500:
-            curr_res_score += 5
-        elif 8500 > weather_dict[key]["today"]["vis"]["avg_vis"] >= 7000:
+        # Gusts (because they suck)
+        if weather_dict[key]["today"]["wind"]["max_gusts"] <= 15:
+            curr_res_score += 3
+        # the range in between is fine so no points there
+        elif weather_dict[key]["today"]["wind"]["max_gusts"] > 25:
+            curr_res_score -= 3
+
+        # Visibility (is this adding too many points??)
+        if weather_dict[key]["today"]["vis"]["avg_vis"] >= 9000:
+            curr_res_score += 6
+        elif 9000 > weather_dict[key]["today"]["vis"]["avg_vis"] >= 7500:
             curr_res_score += 4
-        elif 7000 > weather_dict[key]["today"]["vis"]["avg_vis"] >= 4500:
+        elif 7500 > weather_dict[key]["today"]["vis"]["avg_vis"] >= 5000:
             curr_res_score += 2
+        elif 5000 > weather_dict[key]["today"]["vis"]["avg_vis"] >= 3000:
+            curr_res_score += 1
 
         resort_scores[key] = curr_res_score
 
+    # TEMPERORY
+    # formatting the data to print better in the terminal for debugging
+    # sorts by the score from highest to lowest
     sorted_resort_scores = dict(sorted(resort_scores.items(), key=lambda item: item[1], reverse=True))
-    # Join items into a single string with newlines
+    # join items into a single string with newlines in between resorts
     formatted_output = "\n".join(f"{resort}: {value}" for resort, value in sorted_resort_scores.items())
 
     return formatted_output
 
 
-
-
-        
-
-
+# testing
+# 1 - read in json file w/ full path
+# 2 - call and print above function
 weather_data = read_json_file('/Users/goose/Desktop/ski_report_app/current_api/all_resort_weather_data.json')
 print(count_score(weather_data))
+
+# TODO: begin normalizing the data
 
 

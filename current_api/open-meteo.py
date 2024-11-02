@@ -43,12 +43,15 @@ def get_weather_():
         params = {
             'latitude': curr_lat,
             'longitude': curr_lon,
-            # "latitude": 39.4817,
-            # "longitude": -106.0383,
+            # TODO: change rain to snow -- this is taken care of in all other places
+            # in the code, we only need to change it in this list. "snow" in later 
+            # sections is using rain data
             "hourly": ["temperature_2m", "apparent_temperature", "rain", "visibility", "wind_speed_10m", "wind_gusts_10m", "cloud_cover"],
             "current": "cloud_cover",
+            # "daily": "snowfall_sum",
             "past_days": 7,
-            "forecast_days": 1
+            "forecast_days": 1,
+            "timezone": "America/Denver"
         }
 
         # print(f'CURR RES: {resort_name}')
@@ -57,11 +60,11 @@ def get_weather_():
         response = responses[0]
 
         # Process hourly data. The order of variables needs to be the same as requested.
-        # TODO: add in snow when winter comes
+        # TODO: add in daily snow
         hourly = response.Hourly()
         hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()         # temperature
         hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()   # feels like?
-        hourly_rain = hourly.Variables(2).ValuesAsNumpy()                   # rain 
+        hourly_snow = hourly.Variables(2).ValuesAsNumpy()                   # snow
         hourly_visibility = hourly.Variables(3).ValuesAsNumpy()             # visibility
         hourly_wind_speed_10m = hourly.Variables(4).ValuesAsNumpy()         # wind speed
         hourly_wind_gusts_10m = hourly.Variables(5).ValuesAsNumpy()         # wind gust
@@ -81,7 +84,7 @@ def get_weather_():
         # adds to dictionary created above
         hourly_data["temperature_2m"] = hourly_temperature_2m
         hourly_data["apparent_temperature"] = hourly_apparent_temperature
-        hourly_data["rain"] = hourly_rain
+        hourly_data["snow"] = hourly_snow
         hourly_data["visibility"] = hourly_visibility
         hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
         hourly_data["wind_gusts_10m"] = hourly_wind_gusts_10m
@@ -139,12 +142,12 @@ class todays_weather():
         # print(vis_data)
         return vis_data
     
-    def rain(self):
-        rain_data = {
-            'total_rain': round(sum(self.df['rain']),2)
+    def snow(self):
+        snow_data = {
+            'total_snow': round(sum(self.df['snow']),2)
         }
         # print(rain_data)
-        return rain_data
+        return snow_data
     
     def wind(self):
         filtered_df = self.df[(self.df['date'].dt.hour >= 8) & (self.df['date'].dt.hour <= 16)]
@@ -200,7 +203,7 @@ def weather_dict_maker(df):
 
     weather_dict['temps'] = range_data.get_todays_temp()
     weather_dict['vis'] = range_data.visibility()
-    weather_dict['rain'] = range_data.rain()
+    weather_dict['snow'] = range_data.snow()
     weather_dict['wind'] = range_data.wind()
     return weather_dict
 

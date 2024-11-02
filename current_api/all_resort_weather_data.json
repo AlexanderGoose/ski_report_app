@@ -2,558 +2,558 @@
     "Arapahoe Basin": {
         "today": {
             "temps": {
-                "min_temp": 26.67,
-                "max_temp": 38.64,
-                "avg_temp": 29.47
+                "min_temp": 12.63,
+                "max_temp": 27.03,
+                "avg_temp": 16.07
             },
             "vis": {
-                "min_vis": 47600.0,
-                "max_vis": 81500.0,
-                "avg_vis": 71044.45
+                "min_vis": 27100.0,
+                "max_vis": 52300.0,
+                "avg_vis": 34422.22
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 12.23,
-                "max_gusts": 25.92,
-                "avg_gusts": 15
+                "avg_wind": 14.32,
+                "max_gusts": 41.04,
+                "avg_gusts": 31
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 23.07,
-                "max_temp": 38.64,
-                "avg_temp": 28.51
+                "min_temp": 6.42,
+                "max_temp": 27.03,
+                "avg_temp": 13.0
             },
             "vis": {
-                "min_vis": 26900.0,
-                "max_vis": 81500.0,
-                "avg_vis": 61825.93
+                "min_vis": 200.0,
+                "max_vis": 52300.0,
+                "avg_vis": 21881.48
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.3
             },
             "wind": {
-                "avg_wind": 10.86,
-                "max_gusts": 32.04,
-                "avg_gusts": 14
+                "avg_wind": 13.87,
+                "max_gusts": 46.08,
+                "avg_gusts": 26
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 21.09,
-                "max_temp": 39.27,
-                "avg_temp": 27.08
+                "min_temp": 6.42,
+                "max_temp": 38.73,
+                "avg_temp": 22.66
             },
             "vis": {
-                "min_vis": 300.0,
+                "min_vis": 200.0,
                 "max_vis": 81500.0,
-                "avg_vis": 40465.08
+                "avg_vis": 38058.73
             },
-            "rain": {
-                "total_rain": 13.1
+            "snow": {
+                "total_snow": 2.5
             },
             "wind": {
-                "avg_wind": 14.71,
-                "max_gusts": 73.44,
-                "avg_gusts": 24
+                "avg_wind": 12.95,
+                "max_gusts": 68.76,
+                "avg_gusts": 23
             }
         }
     },
     "Aspen Highlands": {
         "today": {
             "temps": {
-                "min_temp": 35.08,
-                "max_temp": 50.29,
-                "avg_temp": 39.75
+                "min_temp": 24.82,
+                "max_temp": 34.72,
+                "avg_temp": 29.18
             },
             "vis": {
-                "min_vis": 61600.0,
-                "max_vis": 81200.0,
-                "avg_vis": 68888.89
+                "min_vis": 45400.0,
+                "max_vis": 56200.0,
+                "avg_vis": 48922.22
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 8.26,
-                "max_gusts": 14.4,
-                "avg_gusts": 9
+                "avg_wind": 7.72,
+                "max_gusts": 16.56,
+                "avg_gusts": 10
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 32.74,
-                "max_temp": 50.29,
-                "avg_temp": 37.93
+                "min_temp": 17.53,
+                "max_temp": 34.72,
+                "avg_temp": 24.92
             },
             "vis": {
-                "min_vis": 36400.0,
-                "max_vis": 81200.0,
-                "avg_vis": 59518.52
+                "min_vis": 13700.0,
+                "max_vis": 56200.0,
+                "avg_vis": 35618.52
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.3
             },
             "wind": {
-                "avg_wind": 6.47,
-                "max_gusts": 14.4,
+                "avg_wind": 5.85,
+                "max_gusts": 16.56,
                 "avg_gusts": 7
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 32.74,
-                "max_temp": 53.35,
-                "avg_temp": 37.98
+                "min_temp": 17.53,
+                "max_temp": 53.8,
+                "avg_temp": 34.16
             },
             "vis": {
-                "min_vis": 200.0,
+                "min_vis": 300.0,
                 "max_vis": 81200.0,
-                "avg_vis": 44476.19
+                "avg_vis": 46444.45
             },
-            "rain": {
-                "total_rain": 7.0
+            "snow": {
+                "total_snow": 8.8
             },
             "wind": {
-                "avg_wind": 6.83,
-                "max_gusts": 38.52,
-                "avg_gusts": 9
+                "avg_wind": 7.65,
+                "max_gusts": 41.4,
+                "avg_gusts": 12
             }
         }
     },
     "Aspen Mountain": {
         "today": {
             "temps": {
-                "min_temp": 35.18,
-                "max_temp": 53.09,
-                "avg_temp": 39.64
+                "min_temp": 21.32,
+                "max_temp": 32.84,
+                "avg_temp": 24.65
             },
             "vis": {
-                "min_vis": 69500.0,
-                "max_vis": 90000.0,
-                "avg_vis": 80511.11
+                "min_vis": 47200.0,
+                "max_vis": 60800.0,
+                "avg_vis": 51788.89
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 9.42,
-                "max_gusts": 15.48,
+                "avg_wind": 8.9,
+                "max_gusts": 12.96,
                 "avg_gusts": 10
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 32.93,
-                "max_temp": 53.09,
-                "avg_temp": 38.31
+                "min_temp": 16.01,
+                "max_temp": 32.84,
+                "avg_temp": 21.75
             },
             "vis": {
-                "min_vis": 62300.0,
-                "max_vis": 90000.0,
-                "avg_vis": 79151.85
+                "min_vis": 24000.0,
+                "max_vis": 60800.0,
+                "avg_vis": 41477.78
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 1.1
             },
             "wind": {
-                "avg_wind": 8.24,
-                "max_gusts": 16.2,
-                "avg_gusts": 9
+                "avg_wind": 7.67,
+                "max_gusts": 15.48,
+                "avg_gusts": 10
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 29.51,
+                "min_temp": 16.01,
                 "max_temp": 53.09,
-                "avg_temp": 36.12
+                "avg_temp": 31.4
             },
             "vis": {
-                "min_vis": 100.0,
+                "min_vis": 300.0,
                 "max_vis": 90000.0,
-                "avg_vis": 54726.98
+                "avg_vis": 52382.54
             },
-            "rain": {
-                "total_rain": 8.2
+            "snow": {
+                "total_snow": 7.5
             },
             "wind": {
-                "avg_wind": 8.25,
-                "max_gusts": 38.88,
-                "avg_gusts": 12
+                "avg_wind": 9.74,
+                "max_gusts": 66.96,
+                "avg_gusts": 14
             }
         }
     },
     "Buttermilk (Aspen)": {
         "today": {
             "temps": {
-                "min_temp": 34.72,
-                "max_temp": 49.3,
-                "avg_temp": 39.44
+                "min_temp": 23.47,
+                "max_temp": 35.8,
+                "avg_temp": 28.33
             },
             "vis": {
-                "min_vis": 51200.0,
-                "max_vis": 78300.0,
-                "avg_vis": 64877.78
+                "min_vis": 41700.0,
+                "max_vis": 56100.0,
+                "avg_vis": 47011.11
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 4.7,
-                "max_gusts": 10.8,
-                "avg_gusts": 5
+                "avg_wind": 8.11,
+                "max_gusts": 13.32,
+                "avg_gusts": 10
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 31.66,
-                "max_temp": 49.3,
-                "avg_temp": 37.82
+                "min_temp": 17.53,
+                "max_temp": 35.8,
+                "avg_temp": 26.33
             },
             "vis": {
-                "min_vis": 35600.0,
-                "max_vis": 78300.0,
-                "avg_vis": 56740.74
+                "min_vis": 14400.0,
+                "max_vis": 57400.0,
+                "avg_vis": 35177.78
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.3
             },
             "wind": {
-                "avg_wind": 4.24,
-                "max_gusts": 11.88,
-                "avg_gusts": 5
+                "avg_wind": 5.5,
+                "max_gusts": 13.32,
+                "avg_gusts": 7
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 31.66,
-                "max_temp": 53.44,
-                "avg_temp": 38.14
+                "min_temp": 17.53,
+                "max_temp": 54.16,
+                "avg_temp": 34.79
             },
             "vis": {
-                "min_vis": 4000.0,
+                "min_vis": 5800.0,
                 "max_vis": 78300.0,
-                "avg_vis": 43919.05
+                "avg_vis": 46122.22
             },
-            "rain": {
-                "total_rain": 7.6
+            "snow": {
+                "total_snow": 7.1
             },
             "wind": {
-                "avg_wind": 5.31,
-                "max_gusts": 37.08,
-                "avg_gusts": 7
+                "avg_wind": 7.04,
+                "max_gusts": 26.64,
+                "avg_gusts": 10
             }
         }
     },
     "Copper Mountain": {
         "today": {
             "temps": {
-                "min_temp": 26.05,
-                "max_temp": 42.52,
-                "avg_temp": 30.41
+                "min_temp": 14.98,
+                "max_temp": 29.2,
+                "avg_temp": 18.53
             },
             "vis": {
-                "min_vis": 51700.0,
-                "max_vis": 80000.0,
-                "avg_vis": 70955.55
+                "min_vis": 32000.0,
+                "max_vis": 55800.0,
+                "avg_vis": 40044.45
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 9.81,
-                "max_gusts": 23.4,
-                "avg_gusts": 15
+                "avg_wind": 8.1,
+                "max_gusts": 36.36,
+                "avg_gusts": 25
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 24.88,
-                "max_temp": 42.52,
-                "avg_temp": 29.79
+                "min_temp": 10.3,
+                "max_temp": 29.2,
+                "avg_temp": 16.06
             },
             "vis": {
-                "min_vis": 39500.0,
-                "max_vis": 80000.0,
-                "avg_vis": 65677.78
+                "min_vis": 20800.0,
+                "max_vis": 55800.0,
+                "avg_vis": 33307.41
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.1
             },
             "wind": {
-                "avg_wind": 9.94,
-                "max_gusts": 23.4,
-                "avg_gusts": 16
+                "avg_wind": 7.35,
+                "max_gusts": 36.36,
+                "avg_gusts": 20
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 23.98,
+                "min_temp": 10.3,
                 "max_temp": 42.52,
-                "avg_temp": 29.03
+                "avg_temp": 24.41
             },
             "vis": {
-                "min_vis": 200.0,
+                "min_vis": 6800.0,
                 "max_vis": 80000.0,
-                "avg_vis": 44807.94
+                "avg_vis": 43268.25
             },
-            "rain": {
-                "total_rain": 8.4
+            "snow": {
+                "total_snow": 4.1
             },
             "wind": {
-                "avg_wind": 11.8,
-                "max_gusts": 74.16,
-                "avg_gusts": 23
+                "avg_wind": 8.91,
+                "max_gusts": 61.92,
+                "avg_gusts": 24
             }
         }
     },
     "Eldora": {
         "today": {
             "temps": {
-                "min_temp": 40.8,
-                "max_temp": 57.36,
-                "avg_temp": 44.52
+                "min_temp": 27.57,
+                "max_temp": 39.09,
+                "avg_temp": 30.39
             },
             "vis": {
-                "min_vis": 82100.0,
-                "max_vis": 90000.0,
-                "avg_vis": 87488.89
+                "min_vis": 42000.0,
+                "max_vis": 64400.0,
+                "avg_vis": 50555.55
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 13.68,
-                "max_gusts": 36.36,
+                "avg_wind": 16.4,
+                "max_gusts": 43.92,
                 "avg_gusts": 27
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 25.68,
-                "max_temp": 57.36,
-                "avg_temp": 40.27
+                "min_temp": 20.73,
+                "max_temp": 39.09,
+                "avg_temp": 26.64
             },
             "vis": {
-                "min_vis": 20100.0,
-                "max_vis": 90000.0,
-                "avg_vis": 64729.63
+                "min_vis": 0.0,
+                "max_vis": 64400.0,
+                "avg_vis": 21270.37
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.4
             },
             "wind": {
-                "avg_wind": 15.08,
-                "max_gusts": 55.08,
-                "avg_gusts": 25
+                "avg_wind": 12.55,
+                "max_gusts": 43.92,
+                "avg_gusts": 21
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 25.68,
+                "min_temp": 20.73,
                 "max_temp": 57.36,
-                "avg_temp": 40.91
+                "avg_temp": 37.14
             },
             "vis": {
-                "min_vis": 20100.0,
+                "min_vis": 0.0,
                 "max_vis": 90000.0,
-                "avg_vis": 53169.84
+                "avg_vis": 48836.51
             },
-            "rain": {
-                "total_rain": 0.2
+            "snow": {
+                "total_snow": 0.9
             },
             "wind": {
-                "avg_wind": 19.31,
-                "max_gusts": 83.52,
-                "avg_gusts": 33
+                "avg_wind": 14.02,
+                "max_gusts": 55.08,
+                "avg_gusts": 23
             }
         }
     },
     "Snowmass (Aspen)": {
         "today": {
             "temps": {
-                "min_temp": 35.6,
-                "max_temp": 48.65,
-                "avg_temp": 38.37
+                "min_temp": 21.11,
+                "max_temp": 30.38,
+                "avg_temp": 23.37
             },
             "vis": {
-                "min_vis": 63800.0,
-                "max_vis": 88300.0,
-                "avg_vis": 77588.89
+                "min_vis": 39800.0,
+                "max_vis": 47200.0,
+                "avg_vis": 44222.22
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 8.19,
-                "max_gusts": 12.6,
-                "avg_gusts": 10
+                "avg_wind": 14.08,
+                "max_gusts": 28.08,
+                "avg_gusts": 21
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 32.63,
-                "max_temp": 48.65,
-                "avg_temp": 37.39
+                "min_temp": 13.37,
+                "max_temp": 30.38,
+                "avg_temp": 19.49
             },
             "vis": {
-                "min_vis": 58500.0,
-                "max_vis": 88300.0,
-                "avg_vis": 75718.52
+                "min_vis": 22700.0,
+                "max_vis": 47200.0,
+                "avg_vis": 36485.18
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.5
             },
             "wind": {
-                "avg_wind": 9.33,
-                "max_gusts": 14.76,
-                "avg_gusts": 10
+                "avg_wind": 9.51,
+                "max_gusts": 28.08,
+                "avg_gusts": 15
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 27.59,
+                "min_temp": 13.37,
                 "max_temp": 48.65,
-                "avg_temp": 35.72
+                "avg_temp": 29.77
             },
             "vis": {
-                "min_vis": 200.0,
+                "min_vis": 300.0,
                 "max_vis": 88300.0,
-                "avg_vis": 51285.71
+                "avg_vis": 47390.48
             },
-            "rain": {
-                "total_rain": 4.9
+            "snow": {
+                "total_snow": 19.9
             },
             "wind": {
-                "avg_wind": 10.87,
-                "max_gusts": 53.64,
-                "avg_gusts": 16
+                "avg_wind": 10.85,
+                "max_gusts": 56.88,
+                "avg_gusts": 18
             }
         }
     },
     "Steamboat": {
         "today": {
             "temps": {
-                "min_temp": 31.9,
-                "max_temp": 44.14,
-                "avg_temp": 36.57
+                "min_temp": 27.4,
+                "max_temp": 35.59,
+                "avg_temp": 30.83
             },
             "vis": {
-                "min_vis": 30800.0,
-                "max_vis": 48500.0,
-                "avg_vis": 39811.11
+                "min_vis": 25100.0,
+                "max_vis": 41200.0,
+                "avg_vis": 32744.45
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 6.0,
-                "max_gusts": 13.32,
-                "avg_gusts": 6
+                "avg_wind": 7.41,
+                "max_gusts": 11.16,
+                "avg_gusts": 8
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 30.46,
-                "max_temp": 46.03,
-                "avg_temp": 35.6
+                "min_temp": 24.34,
+                "max_temp": 35.59,
+                "avg_temp": 30.29
             },
             "vis": {
-                "min_vis": 23900.0,
-                "max_vis": 48500.0,
-                "avg_vis": 36425.93
+                "min_vis": 12300.0,
+                "max_vis": 41200.0,
+                "avg_vis": 22222.22
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 5.51,
-                "max_gusts": 13.32,
-                "avg_gusts": 6
+                "avg_wind": 5.79,
+                "max_gusts": 12.96,
+                "avg_gusts": 8
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 30.46,
-                "max_temp": 46.03,
-                "avg_temp": 37.18
+                "min_temp": 24.34,
+                "max_temp": 53.68,
+                "avg_temp": 36.88
             },
             "vis": {
-                "min_vis": 1500.0,
-                "max_vis": 52500.0,
-                "avg_vis": 28480.95
+                "min_vis": 4800.0,
+                "max_vis": 61900.0,
+                "avg_vis": 32247.62
             },
-            "rain": {
-                "total_rain": 9.8
+            "snow": {
+                "total_snow": 4.0
             },
             "wind": {
-                "avg_wind": 6.04,
-                "max_gusts": 27.36,
-                "avg_gusts": 7
+                "avg_wind": 6.78,
+                "max_gusts": 38.52,
+                "avg_gusts": 10
             }
         }
     },
     "Winter Park": {
         "today": {
             "temps": {
-                "min_temp": 31.84,
-                "max_temp": 43.63,
-                "avg_temp": 35.16
+                "min_temp": 17.71,
+                "max_temp": 31.39,
+                "avg_temp": 22.52
             },
             "vis": {
-                "min_vis": 47200.0,
-                "max_vis": 82400.0,
-                "avg_vis": 57588.89
+                "min_vis": 22200.0,
+                "max_vis": 43100.0,
+                "avg_vis": 33011.11
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.0
             },
             "wind": {
-                "avg_wind": 6.1,
-                "max_gusts": 11.88,
-                "avg_gusts": 7
+                "avg_wind": 7.29,
+                "max_gusts": 18.0,
+                "avg_gusts": 14
             }
         },
         "three_day": {
             "temps": {
-                "min_temp": 27.16,
-                "max_temp": 43.63,
-                "avg_temp": 33.44
+                "min_temp": 15.46,
+                "max_temp": 31.39,
+                "avg_temp": 22.33
             },
             "vis": {
-                "min_vis": 21400.0,
-                "max_vis": 82400.0,
-                "avg_vis": 44918.52
+                "min_vis": 300.0,
+                "max_vis": 43100.0,
+                "avg_vis": 20570.37
             },
-            "rain": {
-                "total_rain": 0.0
+            "snow": {
+                "total_snow": 0.1
             },
             "wind": {
-                "avg_wind": 6.73,
-                "max_gusts": 12.6,
-                "avg_gusts": 7
+                "avg_wind": 5.82,
+                "max_gusts": 18.36,
+                "avg_gusts": 11
             }
         },
         "seven_day": {
             "temps": {
-                "min_temp": 27.16,
-                "max_temp": 44.35,
-                "avg_temp": 33.23
+                "min_temp": 15.46,
+                "max_temp": 49.03,
+                "avg_temp": 30.3
             },
             "vis": {
-                "min_vis": 700.0,
+                "min_vis": 300.0,
                 "max_vis": 82400.0,
-                "avg_vis": 31184.13
+                "avg_vis": 35684.13
             },
-            "rain": {
-                "total_rain": 12.4
+            "snow": {
+                "total_snow": 0.9
             },
             "wind": {
-                "avg_wind": 7.26,
-                "max_gusts": 49.68,
-                "avg_gusts": 11
+                "avg_wind": 6.09,
+                "max_gusts": 54.0,
+                "avg_gusts": 10
             }
         }
     }
