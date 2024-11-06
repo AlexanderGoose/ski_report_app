@@ -46,7 +46,7 @@ def get_weather_():
             # TODO: change rain to snow -- this is taken care of in all other places
             # in the code, we only need to change it in this list. "snow" in later 
             # sections is using rain data
-            "hourly": ["temperature_2m", "apparent_temperature", "rain", "visibility", "wind_speed_10m", "wind_gusts_10m", "cloud_cover"],
+            "hourly": ["temperature_2m", "apparent_temperature", "snowfall", "visibility", "wind_speed_10m", "wind_gusts_10m", "cloud_cover"],
             "current": "cloud_cover",
             # "daily": "snowfall_sum",
             "past_days": 7,
