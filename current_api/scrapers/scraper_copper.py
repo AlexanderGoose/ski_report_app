@@ -21,9 +21,9 @@ if response_copper:
     past_24hr_copper = values_copper[5].text.strip()
     past_48hr_copper = values_copper[5].text.strip()
     base_snow_copper = soup.find('div', class_='styles_metricNumber__54sKz').text.strip()
-    weather_data['Copper']['24 hr'] = past_24hr_copper[:-1] # the [:-1] removes the " sign
-    weather_data['Copper']['48 hr'] = past_48hr_copper[:-1]
-    weather_data['Copper']['base']  = base_snow_copper[:-1]
+    weather_data['Copper']['24hr_snow'] = int(past_24hr_copper[:-1]) # the [:-1] removes the " sign
+    weather_data['Copper']['48hr_snow'] = int(past_48hr_copper[:-1])
+    weather_data['Copper']['base_snow'] = int(base_snow_copper[:-1])
 else:
     print("Error fetching data on Copper mountain.")
 

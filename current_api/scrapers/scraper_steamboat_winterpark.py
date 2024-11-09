@@ -35,9 +35,9 @@ for link in urls:
     past_48hr = soup.find_all('p', class_='LabeledItem_component__hgsZz')[6].find('strong').text.strip()
     base_snow = soup.find_all('h2', class_='LabelUnitToggle_label__PRGey')[1].text.strip()
 
-    weather_data[curr_res]['24 hr'] = past_24hr[:-1]
-    weather_data[curr_res]['48 hr'] = past_48hr[:-1]
-    weather_data[curr_res]['base']  = base_snow
+    weather_data[curr_res]['24hr_snow'] = int(past_24hr[:-1])
+    weather_data[curr_res]['48hr_snow'] = int(past_48hr[:-1])
+    weather_data[curr_res]['base_snow'] = int(base_snow)
 
 
 file_path = 'json_files/scraped_data.json'

@@ -16,9 +16,9 @@ if r_abasin.status_code == 200:
     base_snow = soup.find_all('div', class_='value-box')[2].find('h5', class_='big-number').text.strip()
     base_snow_fixed = base_snow.split('\u201d')[0]
 
-    weather_data['Arapahoe Basin']['24 hr'] = past_24hr[:-1]
-    weather_data['Arapahoe Basin']['48 hr'] = past_48hr[:-1]
-    weather_data['Arapahoe Basin']['base']  = base_snow_fixed
+    weather_data['Arapahoe Basin']['24hr_snow'] = int(past_24hr[:-1])
+    weather_data['Arapahoe Basin']['48hr_snow'] = int(past_48hr[:-1])
+    weather_data['Arapahoe Basin']['base_snow'] = int(base_snow_fixed)
 else:
     print("Error occured for getting a basin data.")
 

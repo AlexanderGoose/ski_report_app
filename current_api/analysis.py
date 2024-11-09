@@ -57,38 +57,42 @@ def read_json_file(file_path):
 
     with open(file_path, 'r') as file:
         weather_data = json.load(file)
-    
+    print(weather_data)
     return weather_data # returns as dict 
+    
 
 def count_score(weather_dict):
     resort_scores = {}
     for key, values in weather_dict.items():
+        print(key)
         curr_res_score = 0
 
         # Today's snow -- this may be using the wrong input? As in from midnight to now, instead of today's total predicted amount
-        # cosider adding back in the commented out line in open-meteo.py that uses daily data
-        if weather_dict[key]["today"]["snow"]["total_snow"] > 8:
-            curr_res_score += 6  # High score for significant snowfall today
-        elif 8 >= weather_dict[key]["today"]["snow"]["total_snow"] > 4:
+
+        # Scoring logic for 24-hour snowfall
+        # Scoring logic for 24-hour snowfall
+        if int(weather_dict[key]["today"]["snow"]["24hr_snow"]) > 8:
+            curr_res_score += 6  # High score for significant snowfall in the last 24 hours
+        elif 8 >= int(weather_dict[key]["today"]["snow"]["24hr_snow"]) > 4:
             curr_res_score += 4  # Moderate snowfall
-        elif 4 >= weather_dict[key]["today"]["snow"]["total_snow"] > 0:
+        elif 4 >= int(weather_dict[key]["today"]["snow"]["24hr_snow"]) > 0:
             curr_res_score += 2  # Light snowfall
 
-        # 7 day snow - adjusted to use smoother ranges
-        if weather_dict[key]["seven_day"]["snow"]["total_snow"] > 15:
-            curr_res_score += 6
-        elif 15 >= weather_dict[key]["seven_day"]["snow"]["total_snow"] > 8:
-            curr_res_score += 4
-        elif 8 >= weather_dict[key]["seven_day"]["snow"]["total_snow"] > 3:
-            curr_res_score += 2
+        # Scoring logic for 48-hour snowfall
+        if int(weather_dict[key]["today"]["snow"]["48hr_snow"]) > 12:
+            curr_res_score += 5  # High score for significant snowfall over the last 48 hours
+        elif 12 >= int(weather_dict[key]["today"]["snow"]["48hr_snow"]) > 6:
+            curr_res_score += 3  # Moderate snowfall
+        elif 6 >= int(weather_dict[key]["today"]["snow"]["48hr_snow"]) > 0:
+            curr_res_score += 1  # Light snowfall
 
-        # 3 day snow - slightly higher weight for more recent snow
-        if weather_dict[key]["three_day"]["snow"]["total_snow"] > 15:
-            curr_res_score += 7
-        elif 15 >= weather_dict[key]["three_day"]["snow"]["total_snow"] > 8:
-            curr_res_score += 5
-        elif 8 >= weather_dict[key]["three_day"]["snow"]["total_snow"] > 3:
-            curr_res_score += 3
+        # Scoring logic for base snow depth
+        if int(weather_dict[key]["today"]["snow"]["base_snow"]) > 60:
+            curr_res_score += 5  # High score for deep base snow
+        elif 60 >= int(weather_dict[key]["today"]["snow"]["base_snow"]) > 30:
+            curr_res_score += 3  # Moderate base snow
+        elif 30 >= int(weather_dict[key]["today"]["snow"]["base_snow"]) > 0:
+            curr_res_score += 1  # Light base snow
 
         # Temperature
         if 35 >= weather_dict[key]["today"]["temps"]["avg_temp"] >= 20 and weather_dict[key]["today"]["temps"]["max_temp"] <= 40:
@@ -142,7 +146,7 @@ def count_score(weather_dict):
 # testing
 # 1 - read in json file w/ full path
 # 2 - call and print above function
-weather_data = read_json_file('/Users/goose/Desktop/ski_report_app/current_api/all_resort_weather_data.json')
+weather_data = read_json_file('/Users/goose/Desktop/ski_report_app/current_api/json_files/all_resort_weather_data.json')
 # print(count_score(weather_data))
 
 scores = count_score(weather_data)
@@ -165,7 +169,7 @@ print('Normalized Scores:\n')
 print(formatted__normal_output)
 
 # save normalized data as JSON
-with open("normalized_resort_scores.json", "w") as file:
+with open("json_files/normalized_resort_scores.json", "w") as file:
     json.dump(normalized_scores, file, indent=4)
 
 

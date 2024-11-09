@@ -1,22 +1,22 @@
 {
     "Steamboat": {
-        "24 hr": "2",
-        "48 hr": "0",
-        "base": "0"
+        "24hr_snow": 2,
+        "48hr_snow": 0,
+        "base_snow": 0
     },
     "Winter Park": {
-        "24 hr": "3",
-        "48 hr": "4",
-        "base": "18"
+        "24hr_snow": 3,
+        "48hr_snow": 4,
+        "base_snow": 18
     },
     "Arapahoe Basin": {
-        "24 hr": "4",
-        "48 hr": "6",
-        "base": "18"
+        "24hr_snow": 4,
+        "48hr_snow": 6,
+        "base_snow": 18
     },
     "Copper": {
-        "24 hr": "3",
-        "48 hr": "3",
-        "base": "26"
+        "24hr_snow": 3,
+        "48hr_snow": 3,
+        "base_snow": 26
     }
 }

@@ -3,17 +3,17 @@ import os
 import time
 
 # loads in normalized scores
-file_path = '/Users/goose/Desktop/ski_report_app/current_api/normalized_resort_scores.json'
+file_path = '/Users/goose/Desktop/ski_report_app/current_api/json_files/normalized_resort_scores.json'
 with open(file_path, 'r') as file:
     scores = json.load(file)
 
 # loads in weather data
-weather_file_path = '/Users/goose/Desktop/ski_report_app/current_api/all_resort_weather_data.json'
+weather_file_path = '/Users/goose/Desktop/ski_report_app/current_api/json_files/all_resort_weather_data.json'
 with open(weather_file_path, 'r') as file:
     weather = json.load(file)
 
 # updated list without aspen mountains (they ain't included in the base pass)
-resorts_lst = ['Arapahoe Basin', 'Copper Mountain', 'Eldora', 'Steamboat', 'Winter Park']
+resorts_lst = ['Arapahoe Basin', 'Copper Mountain', 'Steamboat', 'Winter Park']
 
 # grabs max resort, top three, and worst
 top_resort = max(scores, key=scores.get)
@@ -94,46 +94,46 @@ def analysis():
         # area to store explenations of weather
         return_statements = []
 
-        snow_1_today = weather[resort1]["today"]["snow"]["total_snow"]
-        snow_1_3     = weather[resort1]["three_day"]["snow"]["total_snow"]
-        snow_1_7     = weather[resort1]["seven_day"]["snow"]["total_snow"]
+        # Fetch snowfall data
+        snow_1_24hr = weather[resort1]["today"]["snow"]["24hr_snow"]
+        snow_1_48hr = weather[resort1]["today"]["snow"]["48hr_snow"]
+        snow_1_base = weather[resort1]["today"]["snow"]["base_snow"]
 
-        snow_2_today = weather[resort2]["today"]["snow"]["total_snow"]
-        snow_2_3     = weather[resort2]["three_day"]["snow"]["total_snow"]
-        snow_2_7     = weather[resort2]["seven_day"]["snow"]["total_snow"]
+        snow_2_24hr = weather[resort2]["today"]["snow"]["24hr_snow"]
+        snow_2_48hr = weather[resort2]["today"]["snow"]["48hr_snow"]
+        snow_2_base = weather[resort2]["today"]["snow"]["base_snow"]
 
-        # compares all combiantions of snow data
-        # TODO: move all clear_screen() calls out of each conditional
-        if snow_1_today > snow_2_today:
-            if snow_1_3 > snow_2_3:
-                if snow_1_7 > snow_2_7:
+        # Compare snow data
+        if snow_1_24hr > snow_2_24hr:
+            if snow_1_48hr > snow_2_48hr:
+                if snow_1_base > snow_2_base:
                     clear_screen()
-                    return_statements.append(f"{resort1} has more snow today, in the last 3 days, and in the last 7 days. \n{resort1} is likely to have the best ski conditions.")
+                    return_statements.append(f"{resort1} has more snow in the last 24 hours, 48 hours, and a deeper base than {resort2}. \n{resort1} is likely to have the best ski conditions overall.")
                 else:
                     clear_screen()
-                    return_statements.append(f"{resort1} has more snow today and in the last 3 days, but {resort2} has more snow in the last 7 days. \n{resort1} may have better conditions due to recent accumulation.")
+                    return_statements.append(f"{resort1} has more snow in the last 24 and 48 hours, but {resort2} has a deeper base. \n{resort1} may offer fresher conditions, while {resort2} has a more established base.")
             else:
-                if snow_1_7 > snow_2_7:
+                if snow_1_base > snow_2_base:
                     clear_screen()
-                    return_statements.append(f"{resort1} has more snow today and in the last 7 days, but {resort2} has had more snow in the last 3 days. \n{resort1} could still be better for skiing today due to fresh snow and overall buildup.")
+                    return_statements.append(f"{resort1} has more snow in the last 24 hours and a deeper base, but {resort2} has more snow in the last 48 hours. \nConditions could be better at {resort1} due to the recent snow and base depth.")
                 else:
                     clear_screen()
-                    return_statements.append(f"{resort1} has more snow today, but {resort2} has had more snow in the last 3 and 7 days. \n{resort2} might have more consistent ski conditions from recent snow accumulation.")
+                    return_statements.append(f"{resort1} has more snow in the last 24 hours, but {resort2} has more snow in the last 48 hours and a deeper base. \n{resort2} might have better skiing conditions overall.")
         else:
-            if snow_1_3 > snow_2_3:
-                if snow_1_7 > snow_2_7:
+            if snow_1_48hr > snow_2_48hr:
+                if snow_1_base > snow_2_base:
                     clear_screen()
-                    return_statements.append(f"{resort2} has more snow today, but {resort1} has more snow in the last 3 days and in the last 7 days. \n{resort1} might offer better overall skiing conditions from recent accumulation.")
+                    return_statements.append(f"{resort2} has more snow in the last 24 hours, but {resort1} has more snow in the last 48 hours and a deeper base. \n{resort1} might offer better overall skiing conditions.")
                 else:
                     clear_screen()
-                    return_statements.append(f"While {resort1} has more snow in the last 3 days,{resort2} has more snow today and in the last 7 days. \nConditions could be balanced, but {resort1} might feel fresher from recent snow.")
+                    return_statements.append(f"{resort2} has more snow in the last 24 hours, while {resort1} has more snow in the last 48 hours. However, {resort2} also has a deeper base. \n{resort2} may have better conditions overall.")
             else:
-                if snow_1_7 > snow_2_7:
+                if snow_1_base > snow_2_base:
                     clear_screen()
-                    return_statements.append(f"{resort2} has more snow today and in the last 3 days, but {resort1} has more snow in the last 7 days. \n{resort2} may have better short-term conditions, while {resort1} might have deeper snow overall.")
+                    return_statements.append(f"{resort2} has more snow in the last 24 and 48 hours, but {resort1} has a deeper base. \nConditions might be better at {resort2} due to recent snow.")
                 else:
                     clear_screen()
-                    return_statements.append(f"{resort2} has more snow today, in the last 3 days, and in the last 7 days. \n{resort2} is likely to have the best ski conditions overall.")
+                    return_statements.append(f"{resort2} has more snow in the last 24 hours, 48 hours, and a deeper base. \n{resort2} is likely to have the best ski conditions overall.")
 
 
         # TODO: compare winds and gusts

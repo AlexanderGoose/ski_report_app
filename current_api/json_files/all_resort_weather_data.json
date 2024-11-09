@@ -12,9 +12,9 @@
                 "avg_vis": 8300.0
             },
             "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
+                "24hr_snow": 4,
+                "48hr_snow": 6,
+                "base_snow": 18
             },
             "wind": {
                 "avg_wind": 16.69,
@@ -67,7 +67,7 @@
             }
         }
     },
-    "Copper Mountain": {
+    "Copper": {
         "today": {
             "temps": {
                 "min_temp": 18.13,
@@ -80,9 +80,9 @@
                 "avg_vis": 11188.89
             },
             "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
+                "24hr_snow": 3,
+                "48hr_snow": 3,
+                "base_snow": 26
             },
             "wind": {
                 "avg_wind": 12.76,
@@ -135,74 +135,6 @@
             }
         }
     },
-    "Eldora": {
-        "today": {
-            "temps": {
-                "min_temp": 24.24,
-                "max_temp": 30.18,
-                "avg_temp": 27.23
-            },
-            "vis": {
-                "min_vis": 300.0,
-                "max_vis": 26600.0,
-                "avg_vis": 17866.67
-            },
-            "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
-            },
-            "wind": {
-                "avg_wind": 9.05,
-                "max_gusts": 59.4,
-                "avg_gusts": 31
-            }
-        },
-        "three_day": {
-            "temps": {
-                "min_temp": 7.14,
-                "max_temp": 30.18,
-                "avg_temp": 21.94
-            },
-            "vis": {
-                "min_vis": 300.0,
-                "max_vis": 45000.0,
-                "avg_vis": 16181.48
-            },
-            "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
-            },
-            "wind": {
-                "avg_wind": 8.31,
-                "max_gusts": 59.4,
-                "avg_gusts": 16
-            }
-        },
-        "seven_day": {
-            "temps": {
-                "min_temp": 7.14,
-                "max_temp": 36.93,
-                "avg_temp": 23.29
-            },
-            "vis": {
-                "min_vis": 200.0,
-                "max_vis": 56600.0,
-                "avg_vis": 18906.35
-            },
-            "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
-            },
-            "wind": {
-                "avg_wind": 12.34,
-                "max_gusts": 108.72,
-                "avg_gusts": 29
-            }
-        }
-    },
     "Steamboat": {
         "today": {
             "temps": {
@@ -216,9 +148,9 @@
                 "avg_vis": 9688.89
             },
             "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
+                "24hr_snow": 2,
+                "48hr_snow": 0,
+                "base_snow": 0
             },
             "wind": {
                 "avg_wind": 3.73,
@@ -284,9 +216,9 @@
                 "avg_vis": 12222.22
             },
             "snow": {
-                "24hr_snow": "",
-                "48hr_snow": "",
-                "base_snow": ""
+                "24hr_snow": 3,
+                "48hr_snow": 4,
+                "base_snow": 18
             },
             "wind": {
                 "avg_wind": 7.47,

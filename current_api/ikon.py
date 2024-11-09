@@ -2,7 +2,7 @@
 #                'Buttermilk (Aspen)', 'Copper Mountain', 'Eldora',
 #                'Snowmass (Aspen)', 'Steamboat', 'Winter Park']
 
-resorts_lst = ['Arapahoe Basin', 'Copper Mountain', 'Eldora', 'Steamboat', 'Winter Park']
+resorts_lst = ['Arapahoe Basin', 'Copper', 'Steamboat', 'Winter Park']
 
 resorts = {
 
@@ -30,7 +30,7 @@ resorts = {
         'PASS': 'Ikon'
     },
 
-    'Copper Mountain': {
+    'Copper': {
         'LAT': 39.4790,
         'LON': -106.1613,
         'PASS': 'Ikon'
