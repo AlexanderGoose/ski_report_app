@@ -1,0 +1,22 @@
+{
+    "Steamboat": {
+        "24 hr": "2",
+        "48 hr": "0",
+        "base": "0"
+    },
+    "Winter Park": {
+        "24 hr": "3",
+        "48 hr": "4",
+        "base": "18"
+    },
+    "Arapahoe Basin": {
+        "24 hr": "4",
+        "48 hr": "6",
+        "base": "18"
+    },
+    "Copper": {
+        "24 hr": "3",
+        "48 hr": "3",
+        "base": "26"
+    }
+}

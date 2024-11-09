@@ -5,6 +5,10 @@ from retry_requests import retry
 from ikon import resorts, resorts_lst
 from datetime import datetime, timedelta
 import json
+import time
+
+# Start the timer
+start_time = time.time()
 
 # Setup the Open-Meteo API client with cache and retry on error
 cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
@@ -143,8 +147,12 @@ class todays_weather():
         return vis_data
     
     def snow(self):
+        # for now, just make them empty and update with scraped data
         snow_data = {
-            'total_snow': round(sum(self.df['snow']),2)
+            # 'total_snow': round(sum(self.df['snow']),2)
+            '24hr_snow': '',
+            '48hr_snow': '',
+            'base_snow': ''
         }
         # print(rain_data)
         return snow_data
@@ -239,5 +247,12 @@ for resort_name in resorts_lst:
     all_resort_data_dict[resort_name] = curr_weather_data
 
 # write all data to a JSON file. We will pull data from the JSON later.
-with open("all_resort_weather_data.json", "w") as file:
+with open("json_files/all_resort_weather_data.json", "w") as file:
     json.dump(all_resort_data_dict, file, indent = 4)
+
+# End the timer
+end_time = time.time()
+
+# Calculate the elapsed time
+elapsed_time = end_time - start_time
+print(f"Elapsed time: {elapsed_time:.2f} seconds")

@@ -7,8 +7,8 @@ resorts_lst = ['Arapahoe Basin', 'Copper Mountain', 'Eldora', 'Steamboat', 'Wint
 resorts = {
 
     'Arapahoe Basin': {
-        'LAT': 39.6341,
-        'LON': -105.8715,
+        'LAT': 39.6421261,
+        'LON': -105.872464,
         'PASS': 'Ikon'
     },
 

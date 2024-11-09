@@ -1,7 +1,7 @@
 import requests
 import time
 import json
-from resort_data import resorts, resorts_lst
+from previous_api.junk.resort_data import resorts, resorts_lst
 
 def kelvin_to_far(kelvin):
     celsius = kelvin - 273.15
