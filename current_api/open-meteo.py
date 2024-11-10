@@ -5,10 +5,7 @@ from retry_requests import retry
 from ikon import resorts, resorts_lst
 from datetime import datetime, timedelta
 import json
-import time
 
-# Start the timer
-start_time = time.time()
 
 # Setup the Open-Meteo API client with cache and retry on error
 cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
@@ -249,10 +246,3 @@ for resort_name in resorts_lst:
 # write all data to a JSON file. We will pull data from the JSON later.
 with open("json_files/all_resort_weather_data.json", "w") as file:
     json.dump(all_resort_data_dict, file, indent = 4)
-
-# End the timer
-end_time = time.time()
-
-# Calculate the elapsed time
-elapsed_time = end_time - start_time
-print(f"Elapsed time: {elapsed_time:.2f} seconds")

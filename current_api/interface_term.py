@@ -193,7 +193,8 @@ def overview():
         print(f"    48 hr snow:     {weather[resort]['today']['snow']['48hr_snow']} inches")
         print(f"    Today's temps:  {weather[resort]['today']['temps']['min_temp']}°F / {weather[resort]['today']['temps']['max_temp']}°F")
         print(f"    Avg wind:       {weather[resort]['today']['wind']['avg_wind']} mph")
-        print(f"    Avg visibility: {int(weather[resort]['today']['vis']['avg_vis'])} miles\n")
+        print(f"    Avg visibility: {int(weather[resort]['today']['vis']['avg_vis'])} miles")
+        print(f"    Lift Report:    {weather[resort]['today']['lifts']['open']} / {weather[resort]['today']['lifts']['total_lifts']} lifts running\n")
 
         if not cont(option="Check out another resort? (Y/N) "):
             break
@@ -204,7 +205,7 @@ def interface(score_dict):
     done = False
     while not done:
         clear_screen()
-        q_list = ["Welcome to the Ikon selector!", "(1) for top resort", "(2) for an overview", "(3) for comparing"]
+        q_list = ["Welcome to the Ikon selector!", "(1) for top resort", "(2) for an overview", "(3) for comparing", "(q) to quit"]
         choice = validate_user_input(q_list=q_list, valid_inputs_lst=[1,2,3])
         if choice == "q":
             clear_screen()

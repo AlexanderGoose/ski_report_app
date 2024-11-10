@@ -7,8 +7,8 @@ resorts_lst = ['Arapahoe Basin', 'Copper', 'Steamboat', 'Winter Park']
 resorts = {
 
     'Arapahoe Basin': {
-        'LAT': 39.6421261,
-        'LON': -105.872464,
+        'LAT': 39.642464,
+        'LON': -105.871872,
         'PASS': 'Ikon'
     },
 
@@ -31,8 +31,8 @@ resorts = {
     },
 
     'Copper': {
-        'LAT': 39.4790,
-        'LON': -106.1613,
+        'LAT': 39.501125,
+        'LON': -106.155998,
         'PASS': 'Ikon'
     },
 
@@ -43,20 +43,20 @@ resorts = {
     },
 
     'Snowmass (Aspen)': {
-        'LAT': 39.1895,
+        'LAT': 40.458214,
         'LON': -106.9497,
         'PASS': 'Ikon'
     },
 
     'Steamboat': {
         'LAT': 40.4850,
-        'LON': -106.8317,
+        'LON': -106.805733,
         'PASS': 'Ikon'
     },
 
     'Winter Park': {
-        'LAT': 39.8869,
-        'LON': -105.7625,
+        'LAT': 40.458214,
+        'LON': -106.805733,
         'PASS': 'Ikon'
     },
 

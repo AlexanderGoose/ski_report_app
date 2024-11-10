@@ -57,7 +57,6 @@ def read_json_file(file_path):
 
     with open(file_path, 'r') as file:
         weather_data = json.load(file)
-    print(weather_data)
     return weather_data # returns as dict 
     
 

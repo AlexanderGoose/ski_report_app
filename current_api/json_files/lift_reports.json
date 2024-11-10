@@ -1,0 +1,22 @@
+{
+    "abasin": {
+        "open": 0,
+        "closed": 0,
+        "total_lifts": 0
+    },
+    "copper": {
+        "open": 0,
+        "closed": 23,
+        "total_lifts": 23
+    },
+    "steamboat": {
+        "open": 0,
+        "closed": 24,
+        "total_lifts": 24
+    },
+    "winter-park": {
+        "open": 7,
+        "closed": 19,
+        "total_lifts": 26
+    }
+}
