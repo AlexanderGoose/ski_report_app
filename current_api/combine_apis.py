@@ -25,15 +25,15 @@ for resort in resorts_lst:
     cur_res_snow_data = snow_data.get(resort)
     all_data[resort]['today']['snow'].update(cur_res_snow_data)
 
-    # handle different naming conventions used in liftie api
-    liftie_res = liftie_resorts_lst[curr_index] # grabs liftie name
-    needed_lift_data = lift_data[liftie_res]
+    # # handle different naming conventions used in liftie api
+    # liftie_res = liftie_resorts_lst[curr_index] # grabs liftie name
+    # needed_lift_data = lift_data[liftie_res]
 
-    # ensure lifts still exists
-    if "lifts" not in all_data[resort]['today']:
-        all_data[resort]['today']['lifts'] = {'open': 0, 'closed': 0, 'total_lifts': 0}
+    # # ensure lifts still exists
+    # if "lifts" not in all_data[resort]['today']:
+    #     all_data[resort]['today']['lifts'] = ''
     
-    all_data[resort]['today']['lifts'].update(needed_lift_data)
+    # all_data[resort]['today']['lifts'].update(needed_lift_data)
 
     curr_index += 1
     

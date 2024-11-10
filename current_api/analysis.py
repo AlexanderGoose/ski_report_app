@@ -49,6 +49,11 @@ else -> 0 points
 
 """
 
+
+
+# TODO: instead of comlex scoring system, I wonder if within interface we can use the comparisons feature to do this.
+# So, instead of distinct scores for ranges, if copper snow > winter park snow, copper_score += 2. would simplify things a ton.
+
 import json
 import os
 

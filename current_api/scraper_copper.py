@@ -12,15 +12,22 @@ url_copper = 'https://www.onthesnow.com/colorado/copper-mountain-resort/skirepor
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }
+
 response_copper = session.get(url_copper, headers=headers)
 if response_copper:
     response_copper.html.render(timeout=30)
     html_content_copper = response_copper.html.html
     soup = BeautifulSoup(html_content_copper, 'html.parser')
     values_copper = soup.find_all('span', class_='styles_snow__5Bl0_')
+    
     past_24hr_copper = values_copper[5].text.strip()
     past_48hr_copper = values_copper[5].text.strip()
     base_snow_copper = soup.find('div', class_='styles_metricNumber__54sKz').text.strip()
+    
+    # find lifts
+    open_lifts = soup.find('div', class_='styles_metric__C07kH').text.strip()
+    weather_data['Copper']['lifts'] = open_lifts[:-5]
+    
     weather_data['Copper']['24hr_snow'] = int(past_24hr_copper[:-1]) # the [:-1] removes the " sign
     weather_data['Copper']['48hr_snow'] = int(past_48hr_copper[:-1])
     weather_data['Copper']['base_snow'] = int(base_snow_copper[:-1])

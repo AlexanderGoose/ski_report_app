@@ -44,9 +44,6 @@ def get_weather_():
         params = {
             'latitude': curr_lat,
             'longitude': curr_lon,
-            # TODO: change rain to snow -- this is taken care of in all other places
-            # in the code, we only need to change it in this list. "snow" in later 
-            # sections is using rain data
             "hourly": ["temperature_2m", "apparent_temperature", "snowfall", "visibility", "wind_speed_10m", "wind_gusts_10m", "cloud_cover"],
             "current": "cloud_cover",
             # "daily": "snowfall_sum",
@@ -136,9 +133,9 @@ class todays_weather():
         
         # Calculate min, max, and avg visibility for the filtered hours
         vis_data = {
-            'min_vis': float(filtered_df['visibility'].min()),
-            'max_vis': float(filtered_df['visibility'].max()),
-            'avg_vis': round(float(filtered_df['visibility'].mean()),2)
+            'min_vis': int(float(filtered_df['visibility'].min()) / 3.28),
+            'max_vis': int(float(filtered_df['visibility'].max()) / 3.28),
+            'avg_vis': int(float(filtered_df['visibility'].mean()) / 3.28)
         }
         # print(vis_data)
         return vis_data
@@ -157,11 +154,10 @@ class todays_weather():
     def wind(self):
         filtered_df = self.df[(self.df['date'].dt.hour >= 8) & (self.df['date'].dt.hour <= 16)]
         wind_data = {
-            'avg_wind': round(float(filtered_df['wind_speed_10m'].mean()),2),
-            'max_gusts': round(max(filtered_df['wind_gusts_10m']),2),
-            'avg_gusts': round(float(filtered_df['wind_gusts_10m'].mean()),)
+            'avg_wind': int(float(filtered_df['wind_speed_10m'].mean())),
+            'max_gusts': int(max(filtered_df['wind_gusts_10m'])),
+            'avg_gusts': int(float(filtered_df['wind_gusts_10m'].mean()))
         }
-        # print(wind_data)
         return wind_data
 
 

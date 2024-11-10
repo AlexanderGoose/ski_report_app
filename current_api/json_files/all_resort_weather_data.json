@@ -7,24 +7,20 @@
                 "avg_temp": 19.69
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 43500.0,
-                "avg_vis": 30588.89
+                "min_vis": 91.46,
+                "max_vis": 13262.2,
+                "avg_vis": 9325.88
             },
             "snow": {
-                "24hr_snow": 4,
-                "48hr_snow": 6,
-                "base_snow": 18
+                "24hr_snow": 3,
+                "48hr_snow": 7,
+                "base_snow": 18,
+                "lifts": "1/9"
             },
             "wind": {
                 "avg_wind": 9.36,
                 "max_gusts": 12.24,
                 "avg_gusts": 10
-            },
-            "lifts": {
-                "open": 0,
-                "closed": 0,
-                "total_lifts": 0
             }
         },
         "three_day": {
@@ -34,9 +30,9 @@
                 "avg_temp": 18.72
             },
             "vis": {
-                "min_vis": 200.0,
-                "max_vis": 43500.0,
-                "avg_vis": 13996.3
+                "min_vis": 60.98,
+                "max_vis": 13262.2,
+                "avg_vis": 4267.16
             },
             "snow": {
                 "24hr_snow": "",
@@ -56,9 +52,9 @@
                 "avg_temp": 15.1
             },
             "vis": {
-                "min_vis": 200.0,
-                "max_vis": 43500.0,
-                "avg_vis": 15212.7
+                "min_vis": 60.98,
+                "max_vis": 13262.2,
+                "avg_vis": 4638.02
             },
             "snow": {
                 "24hr_snow": "",
@@ -80,24 +76,20 @@
                 "avg_temp": 24.66
             },
             "vis": {
-                "min_vis": 26600.0,
-                "max_vis": 45900.0,
-                "avg_vis": 36500.0
+                "min_vis": 8109.76,
+                "max_vis": 13993.9,
+                "avg_vis": 11128.05
             },
             "snow": {
-                "24hr_snow": 3,
-                "48hr_snow": 3,
-                "base_snow": 26
+                "24hr_snow": 2,
+                "48hr_snow": 2,
+                "base_snow": 24,
+                "lifts": "3/24"
             },
             "wind": {
                 "avg_wind": 9.89,
                 "max_gusts": 12.96,
                 "avg_gusts": 10
-            },
-            "lifts": {
-                "open": 0,
-                "closed": 23,
-                "total_lifts": 23
             }
         },
         "three_day": {
@@ -107,9 +99,9 @@
                 "avg_temp": 23.97
             },
             "vis": {
-                "min_vis": 2500.0,
-                "max_vis": 45900.0,
-                "avg_vis": 23988.89
+                "min_vis": 762.2,
+                "max_vis": 13993.9,
+                "avg_vis": 7313.69
             },
             "snow": {
                 "24hr_snow": "",
@@ -129,9 +121,9 @@
                 "avg_temp": 20.78
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 48500.0,
-                "avg_vis": 24063.49
+                "min_vis": 91.46,
+                "max_vis": 14786.59,
+                "avg_vis": 7336.43
             },
             "snow": {
                 "24hr_snow": "",
@@ -153,24 +145,20 @@
                 "avg_temp": 25.73
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 35200.0,
-                "avg_vis": 21488.89
+                "min_vis": 91.46,
+                "max_vis": 10731.71,
+                "avg_vis": 6551.49
             },
             "snow": {
                 "24hr_snow": 2,
                 "48hr_snow": 0,
-                "base_snow": 0
+                "base_snow": 0,
+                "lifts": "0/23"
             },
             "wind": {
                 "avg_wind": 3.98,
                 "max_gusts": 7.92,
                 "avg_gusts": 4
-            },
-            "lifts": {
-                "open": 0,
-                "closed": 24,
-                "total_lifts": 24
             }
         },
         "three_day": {
@@ -180,9 +168,9 @@
                 "avg_temp": 25.47
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 35200.0,
-                "avg_vis": 14981.48
+                "min_vis": 91.46,
+                "max_vis": 10731.71,
+                "avg_vis": 4567.52
             },
             "snow": {
                 "24hr_snow": "",
@@ -202,9 +190,9 @@
                 "avg_temp": 23.64
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 35200.0,
-                "avg_vis": 15417.46
+                "min_vis": 91.46,
+                "max_vis": 10731.71,
+                "avg_vis": 4700.45
             },
             "snow": {
                 "24hr_snow": "",
@@ -226,24 +214,20 @@
                 "avg_temp": 26.92
             },
             "vis": {
-                "min_vis": 20900.0,
-                "max_vis": 37900.0,
-                "avg_vis": 29188.89
+                "min_vis": 6371.95,
+                "max_vis": 11554.88,
+                "avg_vis": 8899.05
             },
             "snow": {
                 "24hr_snow": 3,
-                "48hr_snow": 4,
-                "base_snow": 18
+                "48hr_snow": 6,
+                "base_snow": 18,
+                "lifts": "6/24"
             },
             "wind": {
                 "avg_wind": 7.5,
                 "max_gusts": 11.52,
                 "avg_gusts": 8
-            },
-            "lifts": {
-                "open": 7,
-                "closed": 19,
-                "total_lifts": 26
             }
         },
         "three_day": {
@@ -253,9 +237,9 @@
                 "avg_temp": 26.53
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 37900.0,
-                "avg_vis": 17592.59
+                "min_vis": 91.46,
+                "max_vis": 11554.88,
+                "avg_vis": 5363.6
             },
             "snow": {
                 "24hr_snow": "",
@@ -275,9 +259,9 @@
                 "avg_temp": 24.64
             },
             "vis": {
-                "min_vis": 300.0,
-                "max_vis": 37900.0,
-                "avg_vis": 16761.9
+                "min_vis": 91.46,
+                "max_vis": 11554.88,
+                "avg_vis": 5110.34
             },
             "snow": {
                 "24hr_snow": "",

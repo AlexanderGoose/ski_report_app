@@ -35,6 +35,15 @@ for link in urls:
     past_48hr = soup.find_all('p', class_='LabeledItem_component__hgsZz')[6].find('strong').text.strip()
     base_snow = soup.find_all('h2', class_='LabelUnitToggle_label__PRGey')[1].text.strip()
 
+    # get lifts
+    open_lifts = soup.find_all('span', class_='StatsWidget_statBig__JTduy')[1].text.strip()
+
+    if curr_res == 'Steamboat':
+        weather_data['Steamboat']['lifts'] = f'{open_lifts}/23'
+
+    if curr_res == 'Winter Park':
+        weather_data['Winter Park']['lifts'] = f'{open_lifts}/24'
+
     weather_data[curr_res]['24hr_snow'] = int(past_24hr[:-1])
     weather_data[curr_res]['48hr_snow'] = int(past_48hr[:-1])
     weather_data[curr_res]['base_snow'] = int(base_snow)

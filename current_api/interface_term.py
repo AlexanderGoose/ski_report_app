@@ -193,8 +193,8 @@ def overview():
         print(f"    48 hr snow:     {weather[resort]['today']['snow']['48hr_snow']} inches")
         print(f"    Today's temps:  {weather[resort]['today']['temps']['min_temp']}°F / {weather[resort]['today']['temps']['max_temp']}°F")
         print(f"    Avg wind:       {weather[resort]['today']['wind']['avg_wind']} mph")
-        print(f"    Avg visibility: {int(weather[resort]['today']['vis']['avg_vis'])} miles")
-        print(f"    Lift Report:    {weather[resort]['today']['lifts']['open']} / {weather[resort]['today']['lifts']['total_lifts']} lifts running\n")
+        print(f"    Avg visibility: {int(weather[resort]['today']['vis']['avg_vis'])} ft")
+        print(f"    Lift Report:    {weather[resort]['today']['snow']['lifts']} lifts running\n")
 
         if not cont(option="Check out another resort? (Y/N) "):
             break
