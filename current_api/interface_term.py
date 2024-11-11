@@ -40,8 +40,17 @@ def choose_resort():
 
 
 
-# TODO: create a function that validates user input instead of 
-# doing this every time in the code. Checks for valid input and non empty, restarts if not 
+def choose_two_resorts():
+    """   returns two numbers (1 - 4) as a list   """
+    q_list = ["Choose first resort:", "(1) A Basin", "(2) Copper", "(3) Steamboat", "(4) Winter Park"]
+    choice_1 = validate_user_input(q_list=q_list, valid_inputs_lst=[1,2,3,4])
+    
+    q_list = ["Choose second resort:", "(1) A Basin", "(2) Copper", "(3) Steamboat", "(4) Winter Park"]
+    choice_2 = validate_user_input(q_list=q_list, valid_inputs_lst=[1,2,3,4])
+    return [choice_1, choice_2]
+
+
+
 def validate_user_input(q_list, valid_inputs_lst):
     """function prompts user to enter their input.\n
     Checks if non-empty and if considered valid for the context.\n
@@ -134,8 +143,8 @@ def check_weather(resort1, resort2):
 
 
 def analysis():
-    first_selection = choose_resort()
-    second_selection = choose_resort()
+    choices = choose_two_resorts()
+    first_selection, second_selection = choices[0], choices[1]
 
     # use the numbers of the input to index the list. This converts the selectiosn to 
     # resort names with the proper formatting for the JSON it uses to access information.
@@ -200,13 +209,15 @@ def overview():
             break
 
 
-def interface(score_dict):
-    # TODO: remove top 3, replace analysis with compare, implement overall.
+
+def interface():
     done = False
+
     while not done:
         clear_screen()
         q_list = ["Welcome to the Ikon selector!", "(1) for top resort", "(2) for an overview", "(3) for comparing", "(q) to quit"]
         choice = validate_user_input(q_list=q_list, valid_inputs_lst=[1,2,3])
+        
         if choice == "q":
             clear_screen()
             print("Exiting...")
@@ -226,25 +237,4 @@ def interface(score_dict):
             
 
 clear_screen()
-interface(scores)
-
-    
-
-
-"""
---map--
-
-(1) for top resort
-(2) for an overview
-(3) for comparing
-
-overview ex:
-
-Copper
-    24 hr snow:
-    48 hr snow:
-    today's temps: high/low
-    avg wind speed: 20 mph
-    visibility:
-
-"""
+interface()
