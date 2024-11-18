@@ -18,7 +18,8 @@ url = "https://api.open-meteo.com/v1/forecast"
 def cel_to_far(cel_temp):
     farenheit = cel_temp * (9/5)
     farenheit = farenheit + 32
-    return farenheit
+    far_as_int = int(farenheit)
+    return far_as_int
 
 # TODO: remove unecessary data pulls such as temperature, wind, vis for last week,
 # we want to only have 7 and 3 day data for snowfall, all others should be daily weather variables
@@ -58,7 +59,6 @@ def get_weather_():
         response = responses[0]
 
         # Process hourly data. The order of variables needs to be the same as requested.
-        # TODO: add in daily snow
         hourly = response.Hourly()
         hourly_temperature_2m = hourly.Variables(0).ValuesAsNumpy()         # temperature
         hourly_apparent_temperature = hourly.Variables(1).ValuesAsNumpy()   # feels like?
@@ -120,9 +120,9 @@ class todays_weather():
         
         # Calculate min, max, and avg temperature for filtered hours
         todays_temp_data = {
-            'min_temp': round(float(cel_to_far(daytime_df['temperature_2m'].min())), 2),
-            'max_temp': round(float(cel_to_far(daytime_df['temperature_2m'].max())), 2),
-            'avg_temp': round(float(cel_to_far(daytime_df['temperature_2m'].mean())), 2)
+            'min_temp': int(cel_to_far(daytime_df['temperature_2m'].min())),
+            'max_temp': int(cel_to_far(daytime_df['temperature_2m'].max())),
+            'avg_temp': int(cel_to_far(daytime_df['temperature_2m'].mean()))
         }
         # print(todays_temp_data)
         return todays_temp_data
